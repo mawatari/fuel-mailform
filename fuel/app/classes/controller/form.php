@@ -31,4 +31,22 @@ class Controller_form extends Controller_Template
 		return $val;
 	}
 
+	public function action_confirm()
+	{
+		$val = $this->get_validation();
+
+		if ($val->run())
+		{
+			$data['input'] = $val->validated();
+			$this->template->title = 'コンタクトフォーム：確認';
+			$this->template->content = View::forge('form/confirm', $data);
+		}
+		else
+		{
+			$this->template->title = 'コンタクトフォーム：エラー';
+			$this->template->content = View::forge('form/index');
+			$this->template->content->set_safe('html_error', $val->show_errors());
+		}
+	}
+
 }
