@@ -139,4 +139,15 @@ END;
 		$email->send();
 	}
 
+	/**
+	 * The 404 action for the application.
+	 *
+	 * @access  public
+	 * @return  Response
+	 */
+	public function action_404()
+	{
+		return Response::forge(ViewModel::forge('form/404'), 404);
+	}
+
 }
