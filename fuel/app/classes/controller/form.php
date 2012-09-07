@@ -98,4 +98,31 @@ class Controller_form extends Controller_Template
 		$this->template->content->set_safe('html_error', $html_error);
 	}
 
+	// メールの作成
+	public function build_mail($post)
+	{
+		$data['from']      = $post['email'];
+		$data['from_name'] = $post['name'];
+		$data['to']        = 'fuelphp@yahoo.co.jp';
+		$data['to_name']   = '管理者';
+		$data['subject']   = 'コンタクトフォーム';
+
+		$ip    = Input::ip();
+		$agent = Input::user_agent();
+
+		$data['body'] = <<< END
+------------------------------------------------------------
+          名前: {$post['name']}
+メールアドレス: {$post['email']}
+    IPアドレス: $ip
+      ブラウザ: $agent
+------------------------------------------------------------
+コメント:
+{$post['comment']}
+------------------------------------------------------------
+END;
+
+		return $data;
+	}
+
 }
