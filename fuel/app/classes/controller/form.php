@@ -125,4 +125,18 @@ END;
 		return $data;
 	}
 
+	// メールの送信
+	public function sendmail($data)
+	{
+		Package::load('email');
+
+		$email = Email::forge();
+		$email->from($data['from'], $data['from_name']);
+		$email->to($data['to'], $data['to_name']);
+		$email->subject($data['subject']);
+		$email->body($data['body']);
+
+		$email->send();
+	}
+
 }
