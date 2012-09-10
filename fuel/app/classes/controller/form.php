@@ -1,6 +1,6 @@
 <?php
 
-class Controller_form extends Controller_Template
+class Controller_form extends Controller_Public
 {
 	public function action_index()
 	{
@@ -16,11 +16,13 @@ class Controller_form extends Controller_Template
 		$val->add('name', '名前')
 			->add_rule('trim')
 			->add_rule('required')
+			->add_rule('no_tab_and_newline')
 			->add_rule('max_length', 50);
 
 		$val->add('email', 'メールアドレス')
 			->add_rule('trim')
 			->add_rule('required')
+			->add_rule('no_tab_and_newline')
 			->add_rule('max_length', 100)
 			->add_rule('valid_email');
 
@@ -33,7 +35,7 @@ class Controller_form extends Controller_Template
 
 	public function action_confirm()
 	{
-		$val = $this->get_validation();
+		$val = $this->get_validation()->add_callable('MyValidationRules');
 
 		if ($val->run())
 		{
@@ -147,7 +149,6 @@ END;
 	 */
 	public function action_404()
 	{
-		return Response::forge(ViewModel::forge('form/404'), 404);
+		return Response::forge(ViewModel::forge('welcome/404'), 404);
 	}
-
 }
