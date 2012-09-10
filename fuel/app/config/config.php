@@ -9,8 +9,6 @@
  * @copyright  2010 - 2012 Fuel Development Team
  * @link       http://fuelphp.com
  */
-// set default charset
-ini_set('default_charset', 'UTF-8');
 
 return array(
 
@@ -119,7 +117,10 @@ return array(
 		 * WARNING: Using xss_clean will cause a performance hit.  How much is
 		 * dependant on how much input data there is.
 		 */
-		'input_filter'  => array(),
+		'input_filter'  => array(
+			'MyInputFilters::check_encoding',
+			'MyInputFilters::check_control',
+		),
 
 		/**
 		 * This output filter can be any normal PHP function as well as 'xss_clean'
