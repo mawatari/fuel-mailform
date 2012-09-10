@@ -59,7 +59,7 @@ class Controller_form extends Controller_Public
 			return 'ページ遷移が正しくありません。';
 		}
 
-		$val = $this->get_validation();
+		$val = $this->get_validation()->add_callable('MyValidationRules');
 
 		if ( ! $val->run())
 		{
