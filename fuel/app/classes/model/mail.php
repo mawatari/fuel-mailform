@@ -11,11 +11,13 @@ class Model_Mail extends Model
 	// メールの作成
 	protected function build_mail($post)
 	{
+		Config::load('contact_form', true);
+
 		$data['from']      = $post['email'];
 		$data['from_name'] = $post['name'];
-		$data['to']        = 'fuelphp@yahoo.co.jp';
-		$data['to_name']   = '管理者';
-		$data['subject']   = 'コンタクトフォーム';
+		$data['to']        = Config::get('contact_form.admin_email');
+		$data['to_name']   = Config::get('contact_form.admin_name');
+		$data['subject']   = Config::get('contact_form.subject');
 
 		$ip    = Input::ip();
 		$agent = Input::user_agent();
