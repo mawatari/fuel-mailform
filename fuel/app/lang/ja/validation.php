@@ -15,4 +15,6 @@ return array(
 	'numeric_min'   => ':labelは:param:1超の値を入力してください。',
 	'numeric_max'   => ':labelは:param:1未満の値を入力してください。',
 	'valid_string'  => ':labelは:rule(:param:1)である必要があります。',
+	// 独自ルール
+	'no_tab_and_newline' => ':labelにはタブや改行を含めないようにしてください。',
 );
