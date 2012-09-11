@@ -45,7 +45,8 @@ class Controller_form extends Controller_Public
 
 	public function action_confirm()
 	{
-		$val = $this->get_validation()->add_callable('MyValidationRules');
+		$form = $this->get_form();
+		$val = $form->validation()->add_callable('MyValidationRules');
 
 		if ($val->run())
 		{
@@ -55,9 +56,11 @@ class Controller_form extends Controller_Public
 		}
 		else
 		{
+			$form->repopulate();
 			$this->template->title = 'コンタクトフォーム：エラー';
 			$this->template->content = View::forge('form/index');
 			$this->template->content->set_safe('html_error', $val->show_errors());
+			$this->template->content->set_safe('html_form', $form->build('form/confirm'));
 		}
 	}
 
@@ -69,13 +72,16 @@ class Controller_form extends Controller_Public
 			return 'ページ遷移が正しくありません。';
 		}
 
-		$val = $this->get_validation()->add_callable('MyValidationRules');
+		$form = $this->get_form();
+		$val = $form->validation()->add_callable('MyValidationRules');
 
 		if ( ! $val->run())
 		{
+			$form->repopulate();
 			$this->template->title = 'コンタクトフォーム：エラー';
 			$this->template->content = View::forge('form/index');
 			$this->template->content->set_safe('html_error', $val->show_errors());
+			$this->template->content->set_safe('html_form', $form->build('form/confirm'));
 			return;
 		}
 
@@ -105,9 +111,11 @@ class Controller_form extends Controller_Public
 			$html_error = '<p>メールを送信できませんでした。</p>';
 		}
 
+		$form->repopulate();
 		$this->template->title = 'コンタクトフォーム：送信エラー';
 		$this->template->content = View::forge('form/index');
 		$this->template->content->set_safe('html_error', $html_error);
+		$this->template->content->set_safe('html_form', $form->build('form/confirm'));
 	}
 
 	// メールの作成
