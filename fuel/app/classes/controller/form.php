@@ -4,33 +4,43 @@ class Controller_form extends Controller_Public
 {
 	public function action_index()
 	{
+		$form = $this->get_form();
+
+		if (Input::method() === 'POST')
+		{
+			$form->repopulate();
+		}
 		$this->template->title = 'コンタクトフォーム';
 		$this->template->content = View::forge('form/index');
+		$this->template->content->set_safe('html_form', $form->build('form/confirm'));
 	}
 
-	// 検証ルールの定義
-	public function get_validation()
+	// フォームの定義
+	public function get_form()
 	{
-		$val = Validation::forge();
+		$form = Fieldset::forge();
 
-		$val->add('name', '名前')
+		$form->add('name', '名前')
 			->add_rule('trim')
 			->add_rule('required')
 			->add_rule('no_tab_and_newline')
 			->add_rule('max_length', 50);
 
-		$val->add('email', 'メールアドレス')
+		$form->add('email', 'メールアドレス')
 			->add_rule('trim')
 			->add_rule('required')
 			->add_rule('no_tab_and_newline')
 			->add_rule('max_length', 100)
 			->add_rule('valid_email');
 
-		$val->add('comment', 'コメント')
+		$form->add('comment', 'コメント',
+					array('type' => 'textarea', 'cols' => 70, 'rows' => 6))
 			->add_rule('required')
 			->add_rule('max_length', 400);
 
-		return $val;
+		$form->add('submit', '', array('type'=>'submit', 'value' => '確認'));
+
+		return $form;
 	}
 
 	public function action_confirm()
