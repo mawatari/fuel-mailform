@@ -86,12 +86,12 @@ class Controller_form extends Controller_Public
 		}
 
 		$post = $val->validated();
-		$data = $this->build_mail($post);
 
 		// メールの送信
 		try
 		{
-			$this->sendmail($data);
+			$mail = new Model_Mail();
+			$mail->send($post);
 			$this->template->title = 'コンタクトフォーム：送信完了';
 			$this->template->content = View::forge('form/send');
 			return;
