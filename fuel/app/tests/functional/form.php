@@ -7,6 +7,14 @@
 */
 class Test_Functional_Form extends FunctionalTestCase
 {
+
+	public function test_テスト環境であるか()
+	{
+		$test = Fuel::$env;
+		$expected = 'test';
+		$this->assertEquals($expected, $test);
+	}
+
 	public function test_入力ページにアクセス()
 	{
 		try
