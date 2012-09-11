@@ -118,47 +118,6 @@ class Controller_form extends Controller_Public
 		$this->template->content->set_safe('html_form', $form->build('form/confirm'));
 	}
 
-	// メールの作成
-	public function build_mail($post)
-	{
-		$data['from']      = $post['email'];
-		$data['from_name'] = $post['name'];
-		$data['to']        = 'fuelphp@yahoo.co.jp';
-		$data['to_name']   = '管理者';
-		$data['subject']   = 'コンタクトフォーム';
-
-		$ip    = Input::ip();
-		$agent = Input::user_agent();
-
-		$data['body'] = <<< END
-------------------------------------------------------------
-          名前: {$post['name']}
-メールアドレス: {$post['email']}
-    IPアドレス: $ip
-      ブラウザ: $agent
-------------------------------------------------------------
-コメント:
-{$post['comment']}
-------------------------------------------------------------
-END;
-
-		return $data;
-	}
-
-	// メールの送信
-	public function sendmail($data)
-	{
-		Package::load('email');
-
-		$email = Email::forge();
-		$email->from($data['from'], $data['from_name']);
-		$email->to($data['to'], $data['to_name']);
-		$email->subject($data['subject']);
-		$email->body($data['body']);
-
-		$email->send();
-	}
-
 	/**
 	 * The 404 action for the application.
 	 *
