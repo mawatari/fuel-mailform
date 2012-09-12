@@ -18,7 +18,7 @@ return array(
 		),
 		'identifier'   => '`',
 		'table_prefix' => '',
-		'charset'      => 'utf8',
+		'charset'      => 'utf8mb4',
 		'enable_cache' => true,
 		'profiling'    => false,
 	),
