@@ -3,7 +3,7 @@
 /**
  * Model Form class Tests
  *
- * @group App2
+ * @group App
  */
 
 class Test_Model_Form extends DbTestCase
