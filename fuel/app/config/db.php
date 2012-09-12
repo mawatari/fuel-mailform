@@ -17,7 +17,7 @@ return array(
 			'persistent' => false,
 		),
 		'identifier'   => '`',
-		'table_prefix' => '',
+		'table_prefix' => 'mf_',
 		'charset'      => 'utf8mb4',
 		'enable_cache' => true,
 		'profiling'    => false,
