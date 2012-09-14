@@ -91,10 +91,10 @@ class Controller_form extends Controller_Public
 		unset($post['submit']);
 
 		// DBへ保存
-		$model_form = Model_Form::forge()->set($post);
-		list($id, $rows) = $model_form->save();
+		$model_form = Model_Form::forge($post);
+		$ret = $model_form->save();
 
-		if ($rows != 1)
+		if ($ret)
 		{
 			Log::error('データベース保存エラー', __METHOD__);
 
