@@ -23,9 +23,9 @@ class Controller_Admin extends Controller_Base {
 
 		if (Input::method() == 'POST')
 		{
-			$val->add('email', 'Email or Username')
+			$val->add('email', 'メールアドレスまたはユーザ名')
 			    ->add_rule('required');
-			$val->add('password', 'Password')
+			$val->add('password', 'パスワード')
 			    ->add_rule('required');
 
 			if ($val->run())
@@ -42,12 +42,12 @@ class Controller_Admin extends Controller_Base {
 				}
 				else
 				{
-					$this->template->set_global('login_error', 'Fail');
+					$this->template->set_global('login_error', 'ログインに失敗しました');
 				}
 			}
 		}
 
-		$this->template->title = 'Login';
+		$this->template->title = 'ログイン';
 		$this->template->content = View::forge('admin/login', array('val' => $val), false);
 	}
 

@@ -9,25 +9,25 @@
 	<?php endif; ?>
 
 	<div class="row">
-		<label for="email">Email or Username:</label>
+		<label for="email">メールアドレスまたはユーザ名:</label>
 		<div class="input"><?php echo Form::input('email', Input::post('email')); ?></div>
-		
+
 		<?php if ($val->error('email')): ?>
-			<div class="error"><?php echo $val->error('email')->get_message('You must provide a username or email'); ?></div>
+			<div class="error"><?php echo $val->error('email')->get_message(':labelを入力してください'); ?></div>
 		<?php endif; ?>
 	</div>
 
 	<div class="row">
-		<label for="password">Password:</label>
+		<label for="password">パスワード:</label>
 		<div class="input"><?php echo Form::password('password'); ?></div>
-		
+
 		<?php if ($val->error('password')): ?>
-			<div class="error"><?php echo $val->error('password')->get_message(':label cannot be blank'); ?></div>
+			<div class="error"><?php echo $val->error('password')->get_message(':labelを入力してください'); ?></div>
 		<?php endif; ?>
 	</div>
 
 	<div class="actions">
-		<?php echo Form::submit(array('value'=>'Login', 'name'=>'submit')); ?>
+		<?php echo Form::submit(array('value'=>'ログイン', 'name'=>'submit')); ?>
 	</div>
 
 <?php echo Form::close(); ?>
