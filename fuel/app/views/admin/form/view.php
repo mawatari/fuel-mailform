@@ -1,20 +1,23 @@
-<h2>Viewing #<?php echo $form->id; ?></h2>
+<h2>表示 #<?php echo $form->id; ?></h2>
 
 <p>
-	<strong>Name:</strong>
+	<strong>日時:</strong>
+	<?php echo Date::forge($form->created_at)->format('mysql'); ?></p>
+<p>
+	<strong>名前:</strong>
 	<?php echo $form->name; ?></p>
 <p>
-	<strong>Email:</strong>
+	<strong>メールアドレス:</strong>
 	<?php echo $form->email; ?></p>
 <p>
-	<strong>Comment:</strong>
-	<?php echo $form->comment; ?></p>
+	<strong>コメント:</strong>
+	<?php echo nl2br($form->comment); ?></p>
 <p>
-	<strong>Ip address:</strong>
+	<strong>IPアドレス:</strong>
 	<?php echo $form->ip_address; ?></p>
 <p>
-	<strong>User agent:</strong>
+	<strong>ユーザエージェント:</strong>
 	<?php echo $form->user_agent; ?></p>
 
-<?php echo Html::anchor('admin/form/edit/'.$form->id, 'Edit'); ?> |
-<?php echo Html::anchor('admin/form', 'Back'); ?>
+<?php echo Html::anchor('admin/form/edit/'.$form->id, '編集'); ?> |
+<?php echo Html::anchor('admin/form', '戻る'); ?>

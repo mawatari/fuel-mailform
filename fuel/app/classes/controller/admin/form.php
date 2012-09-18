@@ -17,7 +17,7 @@ class Controller_Admin_Form extends Controller_Admin
 	{
 		$data['form'] = Model_Form::find($id);
 
-		$this->template->title = "Form";
+		$this->template->title = "問い合わせ";
 		$this->template->content = View::forge('admin/form/view', $data);
 
 	}
