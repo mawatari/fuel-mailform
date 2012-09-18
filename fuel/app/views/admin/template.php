@@ -21,23 +21,11 @@
 	<div class="navbar navbar-fixed-top">
 	    <div class="navbar-inner">
 	        <div class="container">
-	            <a href="#" class="brand">My Site</a>
+	            <a href="#" class="brand">コンタクトフォーム</a>
 	            <ul class="nav">
 	                <li class="<?php echo Uri::segment(2) == '' ? 'active' : '' ?>">
-						<?php echo Html::anchor('admin', 'Dashboard') ?>
+						<?php echo Html::anchor('admin/form', '問い合わせ') ?>
 					</li>
-
-					<?php foreach (glob(APPPATH.'classes/controller/admin/*.php') as $controller): ?>
-
-						<?php
-						$section_segment = basename($controller, '.php');
-						$section_title = Inflector::humanize($section_segment);
-						?>
-
-	                <li class="<?php echo Uri::segment(2) == $section_segment ? 'active' : '' ?>">
-						<?php echo Html::anchor('admin/'.$section_segment, $section_title) ?>
-					</li>
-					<?php endforeach; ?>
 	          </ul>
 
 	          <ul class="nav pull-right">
@@ -45,7 +33,7 @@
 	            <li class="dropdown">
 	              <a data-toggle="dropdown" class="dropdown-toggle" href="#"><?php echo $current_user->username ?> <b class="caret"></b></a>
 	              <ul class="dropdown-menu">
-	               <li><?php echo Html::anchor('admin/logout', 'Logout') ?></li>
+	               <li><?php echo Html::anchor('admin/logout', 'ログアウト') ?></li>
 	              </ul>
 	            </li>
 	          </ul>
