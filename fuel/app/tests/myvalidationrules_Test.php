@@ -1,5 +1,11 @@
 <?php
 
+/**
+* MyValidationRules class Tests
+*
+* @group App
+*/
+
 class Test_MyValidationRules extends TestCase
 {
 	public function test_validation_no_tab_and_newline_valid()
