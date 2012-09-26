@@ -9,13 +9,13 @@ return array(
 		'connection'     => array(
 			'hostname'       => 'localhost',
 			'port'           => '3306',
-			'database'       => 'fuel_mailform_dev',
+			'database'       => 'fuel_mailform_test',
 			'username'       => 'root',
 			'password'       => 'root',
 			'persistent'     => false,
 	    ),
 		// 'connection'  => array(
-		// 	'dsn'        => 'mysql:host=localhost;dbname=fuel_mailform_dev;charset=utf8mb4',
+		// 	'dsn'        => 'mysql:host=localhost;dbname=fuel_mailform_test;charset=utf8mb4',
 		// 	'username'   => 'root',
 		// 	'password'   => 'root',
 		// ),

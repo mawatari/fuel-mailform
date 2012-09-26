@@ -10,6 +10,8 @@
  * @link       http://fuelphp.com
  */
 
+ini_set('default_charset', 'UTF-8');
+
 return array(
 
 	/**
@@ -41,7 +43,7 @@ return array(
 	 *
 	 * Set this to false or remove if you using mod_rewrite.
 	 */
-	'index_file'  => 'index.php',
+	'index_file'  => '',
 
 	'profiling'  => false,
 
@@ -73,9 +75,9 @@ return array(
 	/**
 	 * Localization & internationalization settings
 	 */
-	'language'           => 'en', // Default language
+	'language'           => 'ja', // Default language
 	'language_fallback'  => 'en', // Fallback language when file isn't available for default language
-	'locale'             => 'en_US', // PHP set_locale() setting, null to not set
+	'locale'             => 'ja_JP', // PHP set_locale() setting, null to not set
 
 	'encoding'  => 'UTF-8',
 
@@ -85,8 +87,8 @@ return array(
 	 * server_gmt_offset	in seconds the server offset from gmt timestamp when time() is used
 	 * default_timezone		optional, if you want to change the server's default timezone
 	 */
-	'server_gmt_offset'  => 0,
-	'default_timezone'   => 'UTC',
+	'server_gmt_offset'  => 3600 * 9,
+	'default_timezone'   => 'Asia/Tokyo',
 
 	/**
 	 * Logging Threshold.  Can be set to any of the following:
@@ -117,7 +119,10 @@ return array(
 		 * WARNING: Using xss_clean will cause a performance hit.  How much is
 		 * dependant on how much input data there is.
 		 */
-		'input_filter'  => array(),
+		'input_filter'  => array(
+			'MyInputFilters::check_encoding',
+			'MyInputFilters::check_control',
+		),
 
 		/**
 		 * This output filter can be any normal PHP function as well as 'xss_clean'
@@ -141,6 +146,7 @@ return array(
 			'Fuel\\Core\\View',
 			'Fuel\\Core\\ViewModel',
 			'Closure',
+			'Fuel\\Core\\Validation',
 		)
 	),
 
@@ -210,7 +216,8 @@ return array(
 		 * );
 		 */
 		'packages'  => array(
-			//'orm',
+			'orm',
+			'auth',
 		),
 
 		/**
